@@ -37,3 +37,5 @@ print_dataframe_info(message="Replace missing data in column [name, host_name , 
 data["price_category"] = data["price"].apply(categorize_price)
 data["length_of_stay_category"] = data["minimum_nights"].apply(categorize_stay)
 print_dataframe_info(message="Categorized data by price and a length_of_stay_category", data=data[["price", "price_category", "minimum_nights", "length_of_stay_category"]])
+
+#data.to_csv("cleaned_airbnb_data.csv", index=True)

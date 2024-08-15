@@ -1,6 +1,6 @@
 import pandas as pd
 
-datafile = "AB_NYC_2019.csv"
+datafile = "cleaned_airbnb_data.csv"
 
 data = pd.read_csv(datafile)
 
@@ -9,16 +9,6 @@ def print_dataframe_info(data, message=""):
     print(message + "\n" + str(data) + "\n")
 
 # ---- Aggregation and Grouping -------
-def categorize_price(price):
-    if price < 100:
-        return "Low"
-    elif 100 <= price < 300:
-        return "Medium"
-    else:
-        return "High"
-
-data["price_category"] = data["price"].apply(categorize_price)
-
 grouped_1 = data.groupby(["neighbourhood_group", "price_category"]).agg({
     "price": ["mean"],
     "minimum_nights": ["mean"],
@@ -57,3 +47,5 @@ print_dataframe_info(message="Calculate the average price and minimum_nights for
 print_dataframe_info(message="Sort price in DESC:", data=data[["id", "price"]].sort_values(by="price", ascending=False))
 print_dataframe_info(message="Sort minimum_nights in ASC:", data=data[["id", "minimum_nights"]].sort_values(by="minimum_nights", ascending=True))
 print_dataframe_info(message="Ranking of neighborhoods based on the total number of listings and the average price:", data=ranked_neighbourhoods)
+
+data.to_csv("aggregated_airbnb_data.csv.", index=True)
