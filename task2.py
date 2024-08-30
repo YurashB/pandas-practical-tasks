@@ -48,4 +48,4 @@ print_dataframe_info(message="Sort price in DESC:", data=data[["id", "price"]].s
 print_dataframe_info(message="Sort minimum_nights in ASC:", data=data[["id", "minimum_nights"]].sort_values(by="minimum_nights", ascending=True))
 print_dataframe_info(message="Ranking of neighborhoods based on the total number of listings and the average price:", data=ranked_neighbourhoods)
 
-data.to_csv("aggregated_airbnb_data.csv.", index=True)
+data.to_csv("aggregated_airbnb_data.csv", index=True)
